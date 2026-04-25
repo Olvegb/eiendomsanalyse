@@ -1,6 +1,5 @@
-# Data-filer (ikke last opp til GitHub)
-Data/*.json
-Data/Excel_template/
+# Data-filer
+Data/scrape_log.txt
 
 # Python
 __pycache__/
