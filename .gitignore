@@ -1,0 +1,25 @@
+# Data-filer (ikke last opp til GitHub)
+Data/*.json
+Data/Excel_template/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Miljøvariabler / API-nøkler
+.env
+*.env
+
+# macOS
+.DS_Store
+
+# Loggfiler
+Data/scrape_log.txt
