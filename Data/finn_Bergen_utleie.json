@@ -4978,5 +4978,35 @@
     "bedrooms": 2.0,
     "floor": 3.0,
     "lease_period": "01.05.2026"
+  },
+  "461336778": {
+    "finnkode": "461336778",
+    "url": "https://www.finn.no/realestate/lettings/ad.html?finnkode=461336778",
+    "title": "Sentral leilighet i rolig strøk - internett inkludert Kart Gjeble Pederssøns Gate 38, 5034 Bergen",
+    "location": "Gjeble Pederssøns Gate 38, 5034 Bergen",
+    "property_type": "Leilighet",
+    "latitude": 60.4034904,
+    "longitude": 5.327192,
+    "monthly_rent": 13000.0,
+    "deposit": 26000.0,
+    "primary_area": 32.0,
+    "bedrooms": 1.0,
+    "floor": 1.0,
+    "lease_period": "08.06.2026"
+  },
+  "454108343": {
+    "finnkode": "454108343",
+    "url": "https://www.finn.no/realestate/lettings/ad.html?finnkode=454108343",
+    "title": "Stor toppleilighet med 4 soverom og to private takterrasser – heis – 3D-VISNING! Kart STRANDGATEN 221, 5004 Bergen",
+    "location": "STRANDGATEN 221, 5004 Bergen",
+    "property_type": "Leilighet",
+    "latitude": 60.3987053,
+    "longitude": 5.3095296,
+    "monthly_rent": 37990.0,
+    "deposit": 37990.0,
+    "primary_area": 110.0,
+    "bedrooms": 4.0,
+    "floor": 7.0,
+    "lease_period": "01.08.2026"
   }
 }
