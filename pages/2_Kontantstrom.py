@@ -220,7 +220,7 @@ display_df = df[[c for c in display_cols if c in df.columns]].head(300)
 st.dataframe(
     display_df.style
     .format(fmt_cols, na_rep="—")
-    .applymap(color_cashflow, subset=["netto kontantstrøm/år"]),
+    .map(color_cashflow, subset=["netto kontantstrøm/år"]),
     use_container_width=True,
     height=500,
 )
