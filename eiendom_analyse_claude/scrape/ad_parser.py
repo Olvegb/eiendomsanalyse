@@ -120,6 +120,13 @@ def get_ad_info(url: str, http_cfg: HttpConfig | None = None) -> RealEstate | No
     # --- Kommunale avgifter ---
     # FINN bruker ulike testid-er avhengig av boligtype og side-versjon.
     # Vi prøver kjente testid-er, deretter tekst-basert fallback.
+    # Rimelighetsgrense: kommunale avgifter i Norge er 500–80 000 kr/år.
+    _KOM_MIN =     500.0
+    _KOM_MAX =  80_000.0
+
+    def _is_reasonable_kom(val: float) -> bool:
+        return not math.isnan(val) and _KOM_MIN <= val <= _KOM_MAX
+
     kommunale_avgifter = math.nan
     _kom_testids = [
         "pricing-municipal-fees",        # vanligst per 2024/2025
@@ -135,30 +142,28 @@ def get_ad_info(url: str, http_cfg: HttpConfig | None = None) -> RealEstate | No
         container = soup.find(attrs={"data-testid": testid})
         raw = _get_bold_value(container)
         if raw:
-            kommunale_avgifter = _extract_price(raw)
-            break
+            val = _extract_price(raw)
+            if _is_reasonable_kom(val):
+                kommunale_avgifter = val
+                break
 
-    # Fallback: søk etter label-tekst "kommunal" i hele siden
+    # Fallback: søk etter label-tekst "kommunal" i hele siden.
+    # NB: bruk kun direkte søsken – IKKE _get_bold_value(parent) som kan
+    #     finne feil bold-element (f.eks. prisantydning) langt oppe i treet.
     if math.isnan(kommunale_avgifter):
-        for tag in soup.find_all(["dt", "th", "span", "div"]):
+        for tag in soup.find_all(["dt", "th", "span", "div", "p"]):
             label = tag.get_text(strip=True).lower()
-            if "kommunal" in label:
-                # Prøv å lese neste søsken-element eller parent sin verdi
-                sibling = tag.find_next_sibling()
-                if sibling:
-                    raw = sibling.get_text(strip=True)
-                    val = _extract_price(raw)
-                    if not math.isnan(val) and val > 0:
-                        kommunale_avgifter = val
-                        break
-                parent = tag.parent
-                if parent:
-                    raw = _get_bold_value(parent)
-                    if raw and raw != tag.get_text(strip=True):
-                        val = _extract_price(raw)
-                        if not math.isnan(val) and val > 0:
-                            kommunale_avgifter = val
-                            break
+            if "kommunal" not in label:
+                continue
+            # Kun se på direkte søsken, ikke hele parent-treet
+            for sibling in tag.find_next_siblings():
+                raw = sibling.get_text(strip=True)
+                val = _extract_price(raw)
+                if _is_reasonable_kom(val):
+                    kommunale_avgifter = val
+                    break
+            if not math.isnan(kommunale_avgifter):
+                break
 
     # --- Nøkkelinfo (tall) ---
     keyinfo_map = {
