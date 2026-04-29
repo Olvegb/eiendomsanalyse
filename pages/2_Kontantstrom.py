@@ -137,12 +137,16 @@ rows = []
 for r in results:
     estate = sales.get(r.finnkode)
     loc = estate.location if estate else ""
+    bedrooms = estate.bedrooms if estate and not math.isnan(estate.bedrooms) and estate.bedrooms > 0 else None
+    leie_per_rom = r.estimated_rent_monthly / bedrooms if bedrooms else float("nan")
     rows.append({
         "finnkode": r.finnkode,
         "adresse": loc or "",
         "kjøpspris": r.sales_price,
         "areal (m²)": r.area,
+        "soverom": bedrooms if bedrooms else float("nan"),
         "est. leie/mnd": r.estimated_rent_monthly,
+        "est. leie/mnd/rom": leie_per_rom,
         "energimerke": r.energy_label,
         "brutto leie/år": r.gross_rent_year,
         "renter/år": r.interest_year,
@@ -197,7 +201,9 @@ def color_cashflow(val):
 fmt_cols = {
     "kjøpspris": "{:,.0f}",
     "areal (m²)": "{:.0f}",
+    "soverom": "{:.0f}",
     "est. leie/mnd": "{:,.0f}",
+    "est. leie/mnd/rom": "{:,.0f}",
     "brutto leie/år": "{:,.0f}",
     "renter/år": "{:,.0f}",
     "avdrag/år": "{:,.0f}",
