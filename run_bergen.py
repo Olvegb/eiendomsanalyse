@@ -6,6 +6,11 @@ Bruk:
     python run_bergen.py --salg       # kun salg
     python run_bergen.py --leie       # kun leie
     python run_bergen.py --ingen-geo  # hopp over geocoding
+    
+For å oppdatere data i git:
+git add Data/
+git commit -m "Oppdater data"
+git push
 """
 from __future__ import annotations
 

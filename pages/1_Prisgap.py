@@ -20,7 +20,6 @@ from streamlit_folium import st_folium
 from eiendom_analyse_claude.storage.json_store import load_estates
 from eiendom_analyse_claude.analysis.price_gap import compute_price_gaps
 
-st.set_page_config(page_title="Prisgap", page_icon="📊", layout="wide")
 st.title("📊 Nabobasert Prisgapanalyse")
 st.markdown(
     "Finn boliger som er relativt **underpriset** sammenlignet med naboer innen valgt radius."

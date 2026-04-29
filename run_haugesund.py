@@ -6,6 +6,12 @@ Bruk:
     python run_haugesund.py --salg       # kun salg
     python run_haugesund.py --leie       # kun leie
     python run_haugesund.py --ingen-geo  # hopp over geocoding
+    
+For å oppdatere data i git:
+git add Data/
+git commit -m "Oppdater data"
+git push
+
 """
 from __future__ import annotations
 

@@ -22,7 +22,6 @@ try:
 except ImportError:
     _HAS_SKLEARN = False
 
-st.set_page_config(page_title="Eiendom Detaljer", page_icon="🔍", layout="wide")
 st.title("🔍 Eiendom Detaljer")
 st.markdown("Søk opp enkeltboliger og se full informasjon, nabosammenligning og nærliggende utleieobjekter.")
 

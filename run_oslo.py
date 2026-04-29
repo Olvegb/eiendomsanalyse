@@ -6,6 +6,12 @@ Bruk:
     python run_oslo.py --salg       # kun salg
     python run_oslo.py --leie       # kun leie
     python run_oslo.py --ingen-geo  # hopp over geocoding
+
+For å oppdatere data i git:
+git add Data/
+git commit -m "Oppdater data"
+git push
+
 """
 from __future__ import annotations
 
@@ -41,7 +47,7 @@ LEIE_URL = (
 )
 LEIE_UT = "Data/finn_Oslo_utleie.json"
 
-MAX_SIDER = 60
+MAX_SIDER = 100
 GEO_DELAY = 1.0
 
 

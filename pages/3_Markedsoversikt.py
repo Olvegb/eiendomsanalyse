@@ -11,7 +11,6 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-st.set_page_config(page_title="Markedsoversikt", page_icon="📈", layout="wide")
 st.title("📈 Markedsoversikt")
 st.markdown("Statistikk, distribusjoner og sammenligninger på tvers av datasett.")
 

@@ -16,7 +16,6 @@ from eiendom_analyse_claude.analysis.cashflow import (
     CashflowParams, run_cashflow_analysis, CashflowResult, avg_rental_per_m2,
 )
 
-st.set_page_config(page_title="Kontantstrøm", page_icon="💰", layout="wide")
 st.title("💰 Kontantstrøm- og avkastningsanalyse")
 st.markdown(
     "Estimert **netto kontantstrøm**, **brutto-/nettoavkastning** og "
